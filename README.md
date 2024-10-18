@@ -10,46 +10,47 @@
 Установку последней версии Docker Compose и запуск контейнеров.
 
 Переходим к выполнению команд:
-git clone https://github.com/skl256/grafana_stack_for_docker.git          # Клонирование репозитория Grafana Stack для Docker с GitHub.
 
-cd grafana_stack_for_docker                                               # Переход в каталог, куда был склонирован репозиторий.
+- git clone https://github.com/skl256/grafana_stack_for_docker.git          # Клонирование репозитория Grafana Stack для Docker с GitHub.
 
-sudo mkdir -p /mnt/common_volume/swarm/grafana/config                     # Создание каталога для конфигурации Grafana внутри общей директории в Docker Swarm.
+- cd grafana_stack_for_docker                                               # Переход в каталог, куда был склонирован репозиторий.
 
-sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}
-                                                                          # Создание нескольких директорий для хранения данных конфигурации и информации для Grafana, Prometheus, Loki, Promtail.
+- sudo mkdir -p /mnt/common_volume/swarm/grafana/config                     # Создание каталога для конфигурации Grafana внутри общей директории в Docker Swarm.
+
+- sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}
+                                                                            # Создание нескольких директорий для хранения данных конфигурации и информации для Grafana, Prometheus, Loki, Promtail.
                                                                           
-sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
-                                                                          # Изменение владельца этих директорий на текущего пользователя с помощью команд `id -u` и `id -g`, которые возвращают UID и GID текущего пользователя.
+- sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
+                                                                            # Изменение владельца этих директорий на текущего пользователя с помощью команд `id -u` и `id -g`, которые возвращают UID и GID текущего пользователя.
                                                                           
-touch /mnt/common_volume/grafana/grafana-config/grafana.ini               # Создание пустого файла `grafana.ini` для дальнейшей конфигурации Grafana.
+- touch /mnt/common_volume/grafana/grafana-config/grafana.ini               # Создание пустого файла `grafana.ini` для дальнейшей конфигурации Grafana.
 
-cp config/* /mnt/common_volume/swarm/grafana/config/                      # Копирование всех файлов из локальной директории `config` в созданный каталог конфигурации.
+- cp config/* /mnt/common_volume/swarm/grafana/config/                      # Копирование всех файлов из локальной директории `config` в созданный каталог конфигурации.
 
-mv grafana.yaml docker-compose.yaml                                       # Переименование файла `grafana.yaml` в `docker-compose.yaml`, который используется для запуска контейнеров Docker через Docker Compose.
+- mv grafana.yaml docker-compose.yaml                                       # Переименование файла `grafana.yaml` в `docker-compose.yaml`, который используется для запуска контейнеров Docker через Docker Compose.
 
-yum install cur                                                           # Установка утилиты curl (на CentOS/RHEL) для выполнения HTTP-запросов.
+- yum install cur                                                           # Установка утилиты curl (на CentOS/RHEL) для выполнения HTTP-запросов.
 
-COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
-                                                                          # Использование команды curl для получения последней версии Docker Compose с GitHub API. Фильтрация ответа для извлечения тега с версией.
+- COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+                                                                            # Использование команды curl для получения последней версии Docker Compose с GitHub API. Фильтрация ответа для извлечения тега с версией.
                                                                           
-curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
-                                                                          # Загрузка последней версии Docker Compose с официального репозитория GitHub и сохранение её в `/usr/bin/docker-compose`.
+- curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+                                                                            # Загрузка последней версии Docker Compose с официального репозитория GitHub и сохранение её в `/usr/bin/docker-compose`.
                                                                           
-chmod +x /usr/bin/docker-compose SUDO                                     # Предоставление прав на выполнение файла `docker-compose`.
+- chmod +x /usr/bin/docker-compose SUDO                                     # Предоставление прав на выполнение файла `docker-compose`.
 
-docker-compose --version SUDO                                             # Проверка установленной версии Docker Compose.
+- docker-compose --version SUDO                                             # Проверка установленной версии Docker Compose.
 
-yum install wget                                                          # Установка wget для скачивания файлов.
+- yum install wget                                                          # Установка wget для скачивания файлов.
 
-wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo
-                                                                          # Скачивание файла репозитория Docker CE для CentOS и размещение его в директории `/etc/yum.repos.d/`.
+- wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo
+                                                                            # Скачивание файла репозитория Docker CE для CentOS и размещение его в директории `/etc/yum.repos.d/`.
 
-yum install docker-ce docker-ce-cli containerd.io                         # Установка Docker Engine (docker-ce), клиентских инструментов Docker (docker-ce-cli) и контейнерного рантайма containerd.
+- yum install docker-ce docker-ce-cli containerd.io                         # Установка Docker Engine (docker-ce), клиентских инструментов Docker (docker-ce-cli) и контейнерного рантайма containerd.
 
-systemctl enable docker --now                                             # Включение и немедленный запуск службы Docker.
+- systemctl enable docker --now                                             # Включение и немедленный запуск службы Docker.
 
-docker compose up -d                                                      # Запуск сервисов, описанных в `docker-compose.yaml`, в фоновом режиме.
+- docker compose up -d                                                      # Запуск сервисов, описанных в `docker-compose.yaml`, в фоновом режиме.
 
 Самое важное, по пути: /mnt/common_volume/swarm/grafana/config в файле prometheus.ini через vi нужно добавить вот эти строки, так это нужно будет для дальнейшей работы:
 
