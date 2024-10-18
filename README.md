@@ -54,7 +54,7 @@
 
 Самое важное, по пути: /mnt/common_volume/swarm/grafana/config в файле prometheus.ini через vi нужно добавить вот эти строки, так это нужно будет для дальнейшей работы:
 
-node-exporter: 
+    node-exporter: 
     image: prom/node-exporter 
     volumes: 
       - /proc:/host/proc:ro 
