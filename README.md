@@ -39,7 +39,7 @@
 
 - mv grafana.yaml docker-compose.yaml                                       # Переименование файла `grafana.yaml` в `docker-compose.yaml`, который используется для запуска контейнеров Docker через Docker Compose.
 
-- yum install cur                                                           # Установка утилиты curl (на CentOS/RHEL) для выполнения HTTP-запросов.
+- yum install curl                                                          # Установка утилиты curl (на CentOS/RHEL) для выполнения HTTP-запросов.
 
 - COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
                                                                             # Использование команды curl для получения последней версии Docker Compose с GitHub API. Фильтрация ответа для извлечения тега с версией.
@@ -47,7 +47,7 @@
 - curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
                                                                             # Загрузка последней версии Docker Compose с официального репозитория GitHub и сохранение её в `/usr/bin/docker-compose`.
                                                                           
-- chmod +x /usr/bin/docker-compose SUDO                                     # Предоставление прав на выполнение файла `docker-compose`.
+- sudo chmod +x /usr/bin/docker-compose SUDO                                     # Предоставление прав на выполнение файла `docker-compose`.
 
 - docker-compose --version SUDO                                             # Проверка установленной версии Docker Compose.
 
