@@ -25,7 +25,8 @@
 
 - cd grafana_stack_for_docker                                               # Переход в каталог, куда был склонирован репозиторий.
 
-    sudo mkdir -p /mnt/common_volume/swarm/grafana/config                     # Создание каталога для конфигурации Grafana внутри общей директории в Docker Swarm.
+
+sudo mkdir -p /mnt/common_volume/swarm/grafana/config                     # Создание каталога для конфигурации Grafana внутри общей директории в Docker Swarm.
 
 - sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}
                                                                             # Создание нескольких директорий для хранения данных конфигурации и информации для Grafana, Prometheus, Loki, Promtail.
