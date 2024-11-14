@@ -1,4 +1,9 @@
+<h1 align="center">Приветствую вас, программист</a> 
+<img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
+<div style="text-align:center"><img src="https://github.com/user-attachments/assets/9f15babe-67d3-4566-a3cf-b3fa07bea921" /></div>
+
 ![1440686557_mememachine](https://github.com/user-attachments/assets/9f15babe-67d3-4566-a3cf-b3fa07bea921)
+
 
 Работа будет разделена на 3 пункта
 
@@ -12,7 +17,7 @@
 
 Если проблем с установкой виртуальной машины не возникло, то приступаем к первому пункту.
 
-- 1. Установка Grafana Stack с использованием Docker
+- 2. Установка Grafana Stack с использованием Docker
 
 В этом разделе описывается пошаговый процесс установки и настройки стека Grafana с использованием Docker и Docker Compose. Все команды приведены с пояснениями для лучшего понимания процесса и удобства выполнения.
 
