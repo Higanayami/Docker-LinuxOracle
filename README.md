@@ -237,5 +237,13 @@ Prometheus и Grafana часто используются вместе для м
      echo -e "# TYPE OILCOINT_metric1 gauge\nOILCOINT_metric1 0" | curl --data-binary @- http://localhost:8428/api/v1/import/prometheus
 
       curl -G 'http://localhost:8428/api/v1/query' --data-urlencode 'query=OILCOINT_metric1'
+      
+Эти команды(echo -e)* отправляет бинарные данные, такие как метрики в формате Prometheus, на локальный сервер, который слушает на порту 8428; делает(curl -g)* запрос к API для получения данных по метрике OILCOINT_metric1; и выводит текст, совместимый с Prometheus, который содержит информацию о типе и значении этой метрики.
 
+Дальше копируем переменную OILCOINT_metric1 и вставляем в query и нажимаем run
 
+![изображение](https://github.com/user-attachments/assets/b95c9fb3-8fa2-40bf-986d-26c5f5cb7fc0)
+
+После копируем переменную OILCOINT_metric1 и вставляем в code
+
+![изображение](https://github.com/user-attachments/assets/1d6f6015-161f-48ab-8f0d-431d440201ba)
