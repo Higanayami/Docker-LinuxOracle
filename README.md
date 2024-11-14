@@ -1,7 +1,7 @@
 <h1 align="center">Приветствую вас, гитхаберы</a>
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 <p align="center">
-  <img width="460" height="300" src="![1440686557_mememachine](https://github.com/user-attachments/assets/21a5779b-8950-4ebf-a1dd-17b3772d2a5c)
+  <img width="460" height="300" src="https://steamuserimages-a.akamaihd.net/ugc/431571960787637322/3BBD8D0108C3FD3139D2CDFB2AF2312FAA8B56B5/"
 /460/300">
 </p>
 
