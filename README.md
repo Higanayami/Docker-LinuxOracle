@@ -1,9 +1,9 @@
-<h1 align="center">Приветствую вас, программист</a> 
+<h1 align="center">Приветствую вас, гитхаберы</a>
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
-<div style="text-align:center"><img src="https://github.com/user-attachments/assets/9f15babe-67d3-4566-a3cf-b3fa07bea921" /></div>
-
-![1440686557_mememachine](https://github.com/user-attachments/assets/9f15babe-67d3-4566-a3cf-b3fa07bea921)
-
+<p align="center">
+  <img width="460" height="300" src="![1440686557_mememachine](https://github.com/user-attachments/assets/21a5779b-8950-4ebf-a1dd-17b3772d2a5c)
+/460/300">
+</p>
 
 Работа будет разделена на 3 пункта
 
