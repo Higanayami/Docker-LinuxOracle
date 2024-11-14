@@ -1,9 +1,8 @@
 <h1 align="center">Приветствую вас, гитхаберы</a>
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
-<p align="center">
-  <img width="460" height="300" src="https://rubix.su/upload/medialibrary/e5c2aa.gif"
-/460/300">
-</p>
+
+![e5c2aa](https://github.com/user-attachments/assets/8c342396-c844-489d-b956-875ed563053a)
+
 
 Работа будет разделена на 3 пункта
 
@@ -17,7 +16,7 @@
 
 Если проблем с установкой виртуальной машины не возникло, то приступаем к первому пункту.
 
-- 2. Установка Grafana Stack с использованием Docker
+# 1. Установка Grafana Stack с использованием Docker
 
 В этом разделе описывается пошаговый процесс установки и настройки стека Grafana с использованием Docker и Docker Compose. Все команды приведены с пояснениями для лучшего понимания процесса и удобства выполнения.
 
@@ -127,7 +126,7 @@
 
 После всех действий и запуска докера, переходим к следующему пункту.
 
-2. Установка Prometheus в Grafana
+# 2. Установка Prometheus в Grafana
 
 Prometheus и Grafana часто используются вместе для мониторинга и визуализации данных. Prometheus собирает метрики, а Grafana визуализирует их в виде удобных дашбордов. Ниже приведены основные шаги для интеграции Prometheus в Grafana:
 
