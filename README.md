@@ -1,4 +1,4 @@
-Перед началой установки, нужно установить Linux Oracle на VirtualBox при этом нужно учесть некоторые пункты:
+![изображение](https://github.com/user-attachments/assets/fd5ede19-a416-4231-b754-b5ac6c3d73dd)Перед началой установки, нужно установить Linux Oracle на VirtualBox при этом нужно учесть некоторые пункты:
 
 - Иметь образ Linux (https://drive.google.com/file/d/1dwdxyonlkTnOY452-JOaj8GkKKqASfBN/view?usp=sharing)
 - Выделить 2+ ядер.
@@ -20,60 +20,59 @@
 Установку последней версии Docker Compose и запуск контейнеров.
 
 Переходим к выполнению команд:
-
+# Клонирование репозитория Grafana Stack для Docker с GitHub.
     git clone https://github.com/skl256/grafana_stack_for_docker.git
-    # Клонирование репозитория Grafana Stack для Docker с GitHub.
 
+# Переход в каталог, куда был склонирован репозиторий.
     cd grafana_stack_for_docker
-    # Переход в каталог, куда был склонирован репозиторий.
-
+    
+# Создание каталога для конфигурации Grafana внутри общей директории в Docker Swarm.
     sudo mkdir -p /mnt/common_volume/swarm/grafana/config
-    # Создание каталога для конфигурации Grafana внутри общей директории в Docker Swarm.
 
+# Создание нескольких директорий для хранения данных конфигурации и информации для Grafana, Prometheus, Loki, Promtail.
     sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}
-    # Создание нескольких директорий для хранения данных конфигурации и информации для Grafana, Prometheus, Loki, Promtail.
-    
-    sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
-    # Изменение владельца этих директорий на текущего пользователя с помощью команд `id -u` и `id -g`, которые возвращают UID и GID текущего пользователя.
-    
-    touch /mnt/common_volume/grafana/grafana-config/grafana.ini
-    # Создание пустого файла `grafana.ini` для дальнейшей конфигурации Grafana.
-    
-    cp config/* /mnt/common_volume/swarm/grafana/config/
-    # Копирование всех файлов из локальной директории `config` в созданный каталог конфигурации.
-    
-    mv grafana.yaml docker-compose.yaml
-    # Переименование файла `grafana.yaml` в `docker-compose.yaml`, который используется для запуска контейнеров Docker через Docker Compose.
-
-    sudo yum install curl
-    # Установка утилиты curl (на CentOS/RHEL) для выполнения HTTP-запросов.
-
-    COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
-    # Использование команды curl для получения последней версии Docker Compose с GitHub API. Фильтрация ответа для извлечения тега с версией.
-                                                                          
-    sudo curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
-    # Загрузка последней версии Docker Compose с официального репозитория GitHub и сохранение её в `/usr/bin/docker-compose`.
-                                                                          
-    sudo chmod +x /usr/bin/docker-compose
-    # Предоставление прав на выполнение файла `docker-compose`.
-
-    docker-compose --version
-    # Проверка установленной версии Docker Compose.
    
+# Изменение владельца этих директорий на текущего пользователя с помощью команд `id -u` и `id -g`, которые возвращают UID и GID текущего пользователя.   
+    sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}
+    
+# Создание пустого файла `grafana.ini` для дальнейшей конфигурации Grafana.   
+    touch /mnt/common_volume/grafana/grafana-config/grafana.ini
+    
+# Копирование всех файлов из локальной директории `config` в созданный каталог конфигурации.    
+    cp config/* /mnt/common_volume/swarm/grafana/config/
+    
+# Переименование файла `grafana.yaml` в `docker-compose.yaml`, который используется для запуска контейнеров Docker через Docker Compose.   
+    mv grafana.yaml docker-compose.yaml
+
+# Установка утилиты curl (на CentOS/RHEL) для выполнения HTTP-запросов.
+    sudo yum install curl
+    
+# Использование команды curl для получения последней версии Docker Compose с GitHub API. Фильтрация ответа для извлечения тега с версией.
+    COMVER=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+
+# Загрузка последней версии Docker Compose с официального репозитория GitHub и сохранение её в `/usr/bin/docker-compose`.                                                                          
+    sudo curl -L "https://github.com/docker/compose/releases/download/$COMVER/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+    
+# Предоставление прав на выполнение файла `docker-compose`.                                                                          
+    sudo chmod +x /usr/bin/docker-compose
+    
+# Проверка установленной версии Docker Compose.
+    docker-compose --version
+    
+# Установка wget для скачивания файлов.   
     sudo yum install wget
-    # Установка wget для скачивания файлов.
-
+    
+# Скачивание файла репозитория Docker CE для CentOS и размещение его в директории `/etc/yum.repos.d/`.
     sudo wget -P /etc/yum.repos.d/ https://download.docker.com/linux/centos/docker-ce.repo
-    # Скачивание файла репозитория Docker CE для CentOS и размещение его в директории `/etc/yum.repos.d/`.
-
+    
+# Установка Docker Engine (docker-ce), клиентских инструментов Docker (docker-ce-cli) и контейнерного рантайма containerd.
     sudo yum install docker-ce docker-ce-cli containerd.io
-    # Установка Docker Engine (docker-ce), клиентских инструментов Docker (docker-ce-cli) и контейнерного рантайма containerd.
-
+    
+# Включение и немедленный запуск службы Docker.
     systemctl enable docker --now
-    # Включение и немедленный запуск службы Docker.
-
-    docker compose up -d
-    # Запуск сервисов, описанных в `docker-compose.yaml`, в фоновом режиме.
+    
+# Запуск сервисов, описанных в `docker-compose.yaml`, в фоновом режиме.
+    docker compose up -d 
 
 Самое важное, по пути: /mnt/common_volume/swarm/grafana/config в файле prometheus.ini через vi нужно добавить вот эти строки, так это нужно будет для дальнейшей работы:
 
